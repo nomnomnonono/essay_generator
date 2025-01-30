@@ -6,3 +6,7 @@ ruff:
 PHONY: mypy
 mypy:
 	uvx mypy .
+
+PHONY: test
+test:
+	uv run pytest .
