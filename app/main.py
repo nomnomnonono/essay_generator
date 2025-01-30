@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, Query
 
+from .llm import generate_essay
 from .schema import EssyaResponse, RootResponse
 
 openapi_tags = [
@@ -32,7 +33,8 @@ def read_root() -> RootResponse:
 
 
 @app.get("/essay", tags=["essay"], status_code=200)
-def generate_essay(
-    topic: Annotated[str | None, Query(max_length=50)],
+def get_essay(
+    topic: Annotated[str, Query(max_length=50)],
 ) -> EssyaResponse:
-    return EssyaResponse(topic=topic, essay="This is an essay on " + topic)
+    essay = generate_essay(topic)
+    return EssyaResponse(topic=topic, essay=essay)
