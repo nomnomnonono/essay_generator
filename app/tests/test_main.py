@@ -1,14 +1,17 @@
 from fastapi.testclient import TestClient
+
 from app.main import app
 
 client = TestClient(app)
 
-def test_read_root():
+
+def test_read_root() -> None:
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "Welcome to the Essay Generator API!"}
 
-def test_generate_essay():
+
+def test_generate_essay() -> None:
     response = client.get("/essay?topic=AI")
     assert response.status_code == 200
     assert response.json() == {"topic": "AI", "essay": "This is an essay on AI"}
