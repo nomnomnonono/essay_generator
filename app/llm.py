@@ -12,10 +12,7 @@ def generate_essay(topic: str) -> str:
     response = completion(
         model="openai/gpt-4o-mini-2024-07-18",
         messages=[
-            {
-                "content": f"Write an essay on the topic: {topic}",
-                "role": "user"
-            },
+            {"content": f"Write an essay on the topic: {topic}", "role": "user"},
         ],
     )
     essay: str = response.choices[0].message.content

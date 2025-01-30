@@ -5,6 +5,6 @@ class RootResponse(BaseModel):
     message: str
 
 
-class EssyaResponse(BaseModel):
+class EssayResponse(BaseModel):
     topic: str
     essay: str
