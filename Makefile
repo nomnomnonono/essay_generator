@@ -10,3 +10,11 @@ mypy:
 PHONY: test
 test:
 	uv run pytest .
+
+PHONY: setup
+setup:
+	uv sync
+
+PHONY: run
+run:
+	uv run uvicorn app.main:app --reload
